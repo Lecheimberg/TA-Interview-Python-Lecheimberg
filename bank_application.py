@@ -81,3 +81,7 @@ class BankApplication:
             except ValueError:
                 pass
             print("Invalid input. Please select a valid account number.")
+
+if __name__ == "__main__":
+    app = BankApplication()
+    app.start()
