@@ -1,22 +1,20 @@
-import subprocess
-import pytest
-from bank_account import BankAccount
+from bank_application import BankApplication
 
-# Define the command to execute your Python script
-command = ["python", "nature_of_numbers.py"]
+def test_balance_display():
+    app = BankApplication()
+    app.create_account("john", "001", 200.0)
+    app.create_account("Emily", "002", 100.0)
 
-# Define the input data for all test cases
-input_data = "24\nY\n225\nN\n"
+    before_sender = app.get_account_balance("001")
+    before_receiver = app.get_account_balance("002")
 
-# Function to execute the command and capture output
-def run_program(input_data):
-    result = subprocess.run(command, input=input_data, text=True, capture_output=True)
-    return result.stdout
+    result = app.perform_transfer("001", "002", 100.0)
+    
+    after_sender = app.get_account_balance("001")
+    after_receiver = app.get_account_balance("002")
 
-# Write your tests here
-def testcase_01():
-    assert True
-
-
-if __name__ == "__main__":
-    pytest.main()
+    assert result is True
+    assert before_sender == 200.0
+    assert before_receiver == 100.0
+    assert after_sender == 100.0
+    assert after_receiver == 200.0

@@ -1,0 +1,45 @@
+{
+    "tests": [
+      {
+        "name": "Test Account Creation",
+        "setup": "pip install -r requirements.txt",
+        "run": "pytest test_bank_account.py::test_create_account",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 5
+      },
+      {
+        "name": "Test Perform Transfer",
+        "setup": "pip install -r requirements.txt",
+        "run": "pytest test_bank_account.py::test_perform_transfer",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 5
+      },
+      {
+        "name": "Test Insufficient Balance",
+        "setup": "pip install -r requirements.txt",
+        "run": "pytest test_bank_account.py::test_transfer_insufficient_balance",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 5
+      },
+      {
+        "name": "Test BankApplication Balance Display",
+        "setup": "pip install -r requirements.txt",
+        "run": "pytest test_bank_application.py::test_balance_display",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 5
+      }
+    ]
+  }
+  
