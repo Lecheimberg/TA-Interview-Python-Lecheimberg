@@ -45,6 +45,12 @@ class BankApplication:
                 print("Invalid input. Please enter a valid balance.")
         return self.create_account(account_holder_name, account_number, balance)
 
+    def get_account_balance(self, account_number):
+        for account in self.accounts:
+            if account.get_account_number() == account_number:
+                return account.get_balance()
+        return None
+
     def perform_transfer(self):
         print("Select the account to transfer from:")
         from_account = self.select_account()
