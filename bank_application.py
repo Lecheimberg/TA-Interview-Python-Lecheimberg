@@ -13,7 +13,7 @@ class BankApplication:
             self.accounts.append(account)
 
         while True:
-            self.perform_transfer()
+            self.perform_transfer_interactive()
             continue_transfers = input("Do you want to perform another transfer? (yes/no): ")
             if continue_transfers.lower() != 'yes':
                 print("Exiting the application.")
@@ -51,7 +51,19 @@ class BankApplication:
                 return account.get_balance()
         return None
 
-    def perform_transfer(self):
+    def perform_transfer(self, from_account_number, to_account_number, amount):
+        from_account = next((acc for acc in self.accounts if acc.get_account_number() == from_account_number), None)
+        to_account = next((acc for acc in self.accounts if acc.get_account_number() == to_account_number), None)
+
+        if from_account is None or to_account is None:
+            return False
+
+        if from_account.withdraw(amount):
+            to_account.deposit(amount)
+            return True
+        return False
+
+    def perform_transfer_interactive(self):
         print("Select the account to transfer from:")
         from_account = self.select_account()
 
