@@ -9,7 +9,7 @@ class BankApplication:
         num_accounts = self.get_number_of_accounts()
 
         for _ in range(num_accounts):
-            account = self.create_account()
+            account = self.create_account_interactive()
             self.accounts.append(account)
 
         while True:
@@ -29,7 +29,12 @@ class BankApplication:
                 pass
             print("Invalid input. Please enter a number between 1 and 5.")
 
-    def create_account(self):
+    def create_account(self, name, number, balance):
+        account = bank_account.BankAccount(name, number, balance)
+        self.accounts.append(account)
+        return account
+
+    def create_account_interactive(self):
         account_holder_name = input("Enter account holder's name: ")
         account_number = input("Enter account number: ")
         while True:
@@ -38,8 +43,7 @@ class BankApplication:
                 break
             except ValueError:
                 print("Invalid input. Please enter a valid balance.")
-
-        return bank_account.BankAccount(account_holder_name, account_number, balance)
+        return self.create_account(account_holder_name, account_number, balance)
 
     def perform_transfer(self):
         print("Select the account to transfer from:")
